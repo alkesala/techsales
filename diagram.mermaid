@@ -1,27 +1,22 @@
 flowchart LR
-  %% Customer lane
-  subgraph C[Customer]
+  subgraph Customer
     C1[Open app] --> C2[Browse] --> C3[Order] --> C4[Track] --> C5[Receive] --> C6[Feedback]
   end
 
-  %% Frontstage lane
-  subgraph F[Frontstage (Visible)]
-    F1[Listings UI] --> F2[Menu UI] --> F3[Checkout UI] --> F4[ETA & confirmation] --> F5[Tracking & notifications] --> F6[Support / Rating UI]
+  subgraph Frontstage
+    F1[Listings UI] --> F2[Menu UI] --> F3[Checkout UI] --> F4[ETA and confirmation] --> F5[Tracking and notifications] --> F6[Support and rating UI]
   end
 
-  %% Backstage lane
-  subgraph B[Backstage (Internal)]
+  subgraph Backstage
     B1[Ranking logic] --> B2[ETA calculation] --> B3[Payment processing] --> B4[Order to restaurant POS] --> B5[Courier dispatch] --> B6[Issue handling]
   end
 
-  %% Lines of interaction
   C1 --- F1
   C2 --- F2
   C3 --- F3
   C4 --- F5
   C6 --- F6
 
-  %% Lines of visibility (frontstage → backstage)
   F1 -.-> B1
   F3 -.-> B3
   F4 -.-> B2
